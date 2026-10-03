@@ -104,11 +104,11 @@ public:
          * The characters are rarely used upper ASCII, not valid as UTF-8, and produce
          * a large 32-bit integer with any alignment.
          */
-        pchMessageStart[0] = 0xfb;
-        pchMessageStart[1] = 0xc0;
-        pchMessageStart[2] = 0xb6;
-        pchMessageStart[3] = 0xdb;
-        nDefaultPort = 9333;
+        pchMessageStart[0] = 0xe5;
+        pchMessageStart[1] = 0x51;
+        pchMessageStart[2] = 0x4c;
+        pchMessageStart[3] = 0x7a;
+        nDefaultPort = 19733;
         nPruneAfterHeight = 100000;
         m_assumed_blockchain_size = 40;
         m_assumed_chain_state_size = 2;
@@ -123,11 +123,11 @@ public:
         // This is fine at runtime as we'll fall back to using them as an addrfetch if they don't support the
         // service bits we want, but we should get them updated to support all service bits wanted by any
         // release ASAP to avoid it where possible.
-        vSeeds.emplace_back("seed-a.litecoin.loshan.co.uk");
-        vSeeds.emplace_back("dnsseed.thrasher.io");
-        vSeeds.emplace_back("dnsseed.litecointools.com");
-        vSeeds.emplace_back("dnsseed.litecoinpool.org");
-        vSeeds.emplace_back("dnsseed.koin-project.com");
+        //vSeeds.emplace_back("seed-a.litecoin.loshan.co.uk");
+        //vSeeds.emplace_back("dnsseed.thrasher.io");
+        //vSeeds.emplace_back("dnsseed.litecointools.com");
+        //vSeeds.emplace_back("dnsseed.litecoinpool.org");
+        //vSeeds.emplace_back("dnsseed.koin-project.com");
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,48);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,5);
@@ -235,9 +235,9 @@ public:
         vFixedSeeds.clear();
         vSeeds.clear();
         // nodes with support for servicebits filtering should be at the top
-        vSeeds.emplace_back("testnet-seed.litecointools.com");
-        vSeeds.emplace_back("seed-b.litecoin.loshan.co.uk");
-        vSeeds.emplace_back("dnsseed-testnet.thrasher.io");
+        //vSeeds.emplace_back("testnet-seed.litecointools.com");
+        //vSeeds.emplace_back("seed-b.litecoin.loshan.co.uk");
+        //vSeeds.emplace_back("dnsseed-testnet.thrasher.io");
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,111);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,196);

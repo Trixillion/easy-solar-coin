@@ -16,6 +16,16 @@ Current parameters
 - Default ports: P2P 19733, RPC 19732
 - Data directory: ~/.easysolarcoin
 
+Status
+------
+
+The network is private and under development. The consensus rules, the algorithm and the difficulty adjustment may still change before any public launch.
+
+Building
+--------
+
+See doc/build-unix.md for dependencies. On Ubuntu 22.04, run ./autogen.sh, then ./configure --without-gui --disable-tests --disable-bench --with-incompatible-bdb, then make -j4. The programs are built as src/escd, src/esc-cli, src/esc-tx and src/esc-wallet.
+
 Credits and licence
 -------------------
 

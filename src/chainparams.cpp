@@ -4,6 +4,9 @@
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #include <chainparams.h>
+#include <arith_uint256.h>
+#include <cstdio>
+#include <cstdlib>
 
 #include <chainparamsseeds.h>
 #include <consensus/merkle.h>
@@ -53,6 +56,13 @@ static CBlock CreateGenesisBlock(const char* pszTimestamp, const CScript& genesi
 static CBlock CreateGenesisBlock(uint32_t nTime, uint32_t nNonce, uint32_t nBits, int32_t nVersion, const CAmount& genesisReward)
 {
     const char* pszTimestamp = "NY Times 05/Oct/2011 Steve Jobs, Apple’s Visionary, Dies at 56";
+    const CScript genesisOutputScript = CScript() << ParseHex("040184710fa689ad5023690c80f3a49c8f13f8d45b8c857fbcbc8bc4a8e4d3eb4b10f4d4604fa08dce601aaf0f470216fe1b51850b4acf21b179c45070ac7b03a9") << OP_CHECKSIG;
+    return CreateGenesisBlock(pszTimestamp, genesisOutputScript, nTime, nNonce, nBits, nVersion, genesisReward);
+}
+
+static CBlock CreateEscGenesisBlock(uint32_t nTime, uint32_t nNonce, uint32_t nBits, int32_t nVersion, const CAmount& genesisReward)
+{
+    const char* pszTimestamp = "4 Oct 2026 - EasySolarCoin: mined by the sun";
     const CScript genesisOutputScript = CScript() << ParseHex("040184710fa689ad5023690c80f3a49c8f13f8d45b8c857fbcbc8bc4a8e4d3eb4b10f4d4604fa08dce601aaf0f470216fe1b51850b4acf21b179c45070ac7b03a9") << OP_CHECKSIG;
     return CreateGenesisBlock(pszTimestamp, genesisOutputScript, nTime, nNonce, nBits, nVersion, genesisReward);
 }
@@ -113,10 +123,10 @@ public:
         m_assumed_blockchain_size = 40;
         m_assumed_chain_state_size = 2;
 
-        genesis = CreateGenesisBlock(1317972665, 2084524493, 0x1e0ffff0, 1, 50 * COIN);
+        genesis = CreateEscGenesisBlock(1791104827, 436964, 0x1e0ffff0, 1, 40 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
-        assert(consensus.hashGenesisBlock == uint256S("0x12a765e31ffd4059bada1e25190f6e98c99d9714d334efa41a195a7e7e04bfe2"));
-        assert(genesis.hashMerkleRoot == uint256S("0x97ddfbbae6be97fd6cdf3e7ca13232a3afff2353e29badfab7f73011edd4ced9"));
+        assert(consensus.hashGenesisBlock == uint256S("0x5482990015497139b29615f6e0c64da59adc1784167517340c45d7fcc86e5b08"));
+        assert(genesis.hashMerkleRoot == uint256S("0x4f5bfe0176da214ddb1cf9566b8e93b384d01c953490ef31c9987cd996df115e"));
 
         // Note that of those which support the service bits prefix, most only support a subset of
         // possible options.

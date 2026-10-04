@@ -149,3 +149,7 @@ db4/
 osx_volname
 dist/
 *.background.tiff
+src/escd
+src/esc-cli
+src/esc-tx
+src/esc-wallet

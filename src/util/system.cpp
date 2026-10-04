@@ -71,7 +71,7 @@
 // Application startup time (used for uptime calculation)
 const int64_t nStartupTime = GetTime();
 
-const char * const BITCOIN_CONF_FILENAME = "litecoin.conf";
+const char * const BITCOIN_CONF_FILENAME = "easysolarcoin.conf";
 const char * const BITCOIN_SETTINGS_FILENAME = "settings.json";
 
 ArgsManager gArgs;
@@ -668,7 +668,7 @@ fs::path GetDefaultDataDir()
     return pathRet / "Library/Application Support/Litecoin";
 #else
     // Unix-like
-    return pathRet / ".litecoin";
+    return pathRet / ".easysolarcoin";
 #endif
 #endif
 }

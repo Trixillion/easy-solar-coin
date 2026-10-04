@@ -21,6 +21,8 @@ Status
 
 The network is private and under development. The consensus rules, the algorithm and the difficulty adjustment may still change before any public launch.
 
+This software is provided "as is", without warranty of any kind. ESC has no market value, and nothing here is a promise or expectation of value, profit or future listings.
+
 Building
 --------
 

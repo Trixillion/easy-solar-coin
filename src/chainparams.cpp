@@ -86,7 +86,7 @@ public:
         consensus.SegwitHeight = 0;
         consensus.MinBIP9WarningHeight = 0;
         consensus.powLimit = uint256S("00000fffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
-        consensus.nPowTargetTimespan = 100800; // 2016 blocks x 50 seconds
+        consensus.nPowTargetTimespan = 3000; // 60 blocks x 50 seconds
         consensus.nPowTargetSpacing = 50;
         consensus.fPowAllowMinDifficultyBlocks = false;
         consensus.fPowNoRetargeting = false;

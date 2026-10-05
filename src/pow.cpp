@@ -9,11 +9,49 @@
 #include <chain.h>
 #include <primitives/block.h>
 #include <uint256.h>
+#include <algorithm>
+
+// EasySolarCoin: LWMA difficulty (based on zawy12's LWMA-1), recalculated every block
+static unsigned int LwmaNextWorkRequired(const CBlockIndex* pindexLast, const Consensus::Params& params)
+{
+    const int64_t T = params.nPowTargetSpacing;
+    const int64_t N = 60;
+    const arith_uint256 bnPowLimit = UintToArith256(params.powLimit);
+
+    // Not enough history yet: keep the current difficulty
+    if (pindexLast->nHeight < N) return pindexLast->nBits;
+
+    int64_t previous_timestamp = pindexLast->GetAncestor(pindexLast->nHeight - N)->GetBlockTime();
+    arith_uint256 sum_target;
+    int64_t t = 0;
+    for (int64_t j = 1; j <= N; j++) {
+        const CBlockIndex* pindex = pindexLast->GetAncestor(pindexLast->nHeight - N + j);
+        int64_t this_timestamp = pindex->GetBlockTime();
+        if (this_timestamp <= previous_timestamp) this_timestamp = previous_timestamp + 1;
+        int64_t solvetime = std::min<int64_t>(6 * T, this_timestamp - previous_timestamp);
+        previous_timestamp = this_timestamp;
+        t += solvetime * j;
+        arith_uint256 target;
+        target.SetCompact(pindex->nBits);
+        sum_target += target;
+    }
+
+    const int64_t k = N * (N + 1) * T / 2;
+    if (t < k / 10) t = k / 10;
+
+    arith_uint256 bnNew = sum_target / N;
+    bnNew /= k;
+    bnNew *= t;
+    if (bnNew > bnPowLimit) bnNew = bnPowLimit;
+    return bnNew.GetCompact();
+}
+
 
 unsigned int GetNextWorkRequired(const CBlockIndex* pindexLast, const CBlockHeader *pblock, const Consensus::Params& params)
 {
     assert(pindexLast != nullptr);
     unsigned int nProofOfWorkLimit = UintToArith256(params.powLimit).GetCompact();
+    if (!params.fPowNoRetargeting && !params.fPowAllowMinDifficultyBlocks) return LwmaNextWorkRequired(pindexLast, params);
 
     // Only change once per difficulty adjustment interval
     if ((pindexLast->nHeight+1) % params.DifficultyAdjustmentInterval() != 0)

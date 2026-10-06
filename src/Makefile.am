@@ -456,6 +456,7 @@ libbitcoin_wallet_tool_a_SOURCES = \
 # crypto primitives library
 crypto_libbitcoin_crypto_base_a_CPPFLAGS = $(AM_CPPFLAGS) $(SSL_CFLAGS) $(BITCOIN_INCLUDES)
 crypto_libbitcoin_crypto_base_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+crypto_libbitcoin_crypto_base_a_CFLAGS = $(PIE_FLAGS)
 crypto_libbitcoin_crypto_base_a_SOURCES = \
   crypto/aes.cpp \
   crypto/aes.h \
@@ -477,6 +478,12 @@ crypto_libbitcoin_crypto_base_a_SOURCES = \
   crypto/scrypt.cpp \
   crypto/scrypt-sse2.cpp \
   crypto/scrypt.h \
+  crypto/yespower/yespower.h \
+  crypto/yespower/yespower-opt.c \
+  crypto/yespower/sha256.c \
+  crypto/yespower/sha256.h \
+  crypto/yespower/insecure_memzero.h \
+  crypto/yespower/sysendian.h \
   crypto/sha1.cpp \
   crypto/sha1.h \
   crypto/sha256.cpp \

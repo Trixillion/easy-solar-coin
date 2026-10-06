@@ -9,7 +9,9 @@
 #include <tinyformat.h>
 #include <util/strencodings.h>
 #include <crypto/common.h>
-#include <crypto/scrypt.h>
+extern "C" {
+#include <crypto/yespower/yespower.h>
+}
 
 uint256 CBlockHeader::GetHash() const
 {
@@ -19,7 +21,10 @@ uint256 CBlockHeader::GetHash() const
 uint256 CBlockHeader::GetPoWHash() const
 {
     uint256 thash;
-    scrypt_1024_1_1_256(BEGIN(nVersion), BEGIN(thash));
+    static const yespower_params_t yp_params = { YESPOWER_1_0, 2048, 8, NULL, 0 };
+    if (yespower_tls((const uint8_t*)BEGIN(nVersion), 80, &yp_params, (yespower_binary_t*)BEGIN(thash)) != 0) {
+        abort();
+    }
     return thash;
 }
 

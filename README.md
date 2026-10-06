@@ -7,7 +7,7 @@ Current parameters
 ------------------
 
 - Ticker: ESC
-- Algorithm: scrypt (unchanged from Litecoin, under review before any public launch)
+- Algorithm: yespower 1.0 (N=2048, r=8, no personalisation string), a CPU-oriented proof of work
 - Block time: 50 seconds
 - Block reward: 40 ESC, halving every 3,150,000 blocks (about 5 years)
 - Maximum supply: about 252 million ESC
@@ -32,5 +32,7 @@ Credits and licence
 -------------------
 
 EasySolarCoin is based on Litecoin Core, which is in turn based on Bitcoin Core. Thanks to the Litecoin Core and Bitcoin Core developers. The original Litecoin README is kept in README-litecoin-original.md.
+
+The yespower proof-of-work code is by Solar Designer (Openwall) and keeps its original licence headers in src/crypto/yespower.
 
 This software is released under the terms of the MIT license. See COPYING for more information or see https://opensource.org/licenses/MIT. The original copyright notices must be kept.

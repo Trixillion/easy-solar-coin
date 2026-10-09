@@ -1,0 +1,13 @@
+diff --git a/cpu-miner.c b/cpu-miner.c
+index e356084..f7ae2ab 100644
+--- a/cpu-miner.c
++++ b/cpu-miner.c
+@@ -1497,7 +1497,7 @@ const char *getwork_req =
+ 
+ #define GBT_CAPABILITIES "[\"coinbasetxn\", \"coinbasevalue\", \"longpoll\", \"workid\"]"
+ 
+-#define GBT_RULES "[\"segwit\"]"
++#define GBT_RULES "[\"mweb\", \"segwit\"]"
+ 
+ static const char *gbt_req =
+    "{\"method\": \"getblocktemplate\", \"params\": [{\"capabilities\": "
